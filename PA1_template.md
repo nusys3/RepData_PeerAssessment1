@@ -1,16 +1,11 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 ### Data Preparation
 The data for this assignment can be downloaded from the course web site:
 
 - Activity monitoring data [https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip]
 
-Please make sure the extracted activity.csv file is in the current working directory.
+Please make sure that activity.csv file that is extracted from the archive file above is in the current working directory.
 
 ###Loading and preprocessing the data:
 
@@ -18,20 +13,23 @@ Please make sure the extracted activity.csv file is in the current working direc
 ```r
 library(ggplot2)
 library(dplyr)
-
-activity <- read.csv(file = "activity.csv", header = TRUE)
 ```
 
 ```
-## Warning in file(file, "rt"): 파일 'activity.csv'를 여는데 실패했습니다: No
-## such file or directory
-```
-
-```
-## Error in file(file, "rt"): 커넥션을 열 수 없습니다
+## 
+## Attaching package: 'dplyr'
+## 
+## The following object is masked from 'package:stats':
+## 
+##     filter
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
 ```
 
 ```r
+activity <- read.csv(file = "activity.csv", header = TRUE)
 group_by_date <- group_by(activity, date)
 group_by_interval <- group_by(activity, interval)
 ```
@@ -50,7 +48,7 @@ Make a histogram of the total number of steps taken each day
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 Calculate and report the mean and median of the total number of steps taken per day
 
@@ -71,7 +69,7 @@ avg_by_interval <- arrange(avg_by_interval, desc(avgByInterval))
 qplot(data = avg_by_interval, x = interval, y= avgByInterval, geom = "line")
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
 
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -114,7 +112,7 @@ Make a histogram of the total number of steps taken each day
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
 Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 Calculate and report the mean and median total number of steps taken per day
@@ -137,7 +135,7 @@ print(my_median_no_missing_data)
 ```
 ## [1] 10766.19
 ```
-The mean value of the total number of steps taken per day with imputing NA is ``1.0766189 &times; 10<sup>4</sup>`` (previously ``9354.2295082``) and the median value is ``1.0766189 &times; 10<sup>4</sup>`` (previously ``10395``). 
+The mean value of the total number of steps taken per day with imputing NA is ``1.0766189\times 10^{4}`` (previously ``9354.2295082``) and the median value is ``1.0766189\times 10^{4}`` (previously ``10395``). 
 
 ###Are there differences in activity patterns between weekdays and weekends?
 
@@ -164,4 +162,4 @@ Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minut
 qplot(x = interval, y = stepsByInterval, data = by_interval_with_pattern, geom="line", facets = (day_type ~ .))
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-13-1.png) 

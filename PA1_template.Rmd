@@ -10,7 +10,7 @@ The data for this assignment can be downloaded from the course web site:
 
 - Activity monitoring data [https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip]
 
-Please make sure the extracted activity.csv file is in the current working directory.
+Please make sure that activity.csv file that is extracted from the archive file above is in the current working directory.
 
 ###Loading and preprocessing the data:
 
